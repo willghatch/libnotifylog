@@ -1,0 +1,1 @@
+This is a little program to log messages from libnotify.  I took it from [this repo](https://github.com/AndrewSDFoster/libnotifylog), which was a modification of some code from a QA site on a tangentially related topic.  I've just hacked it a bit for my own use.  Maybe some day someone (maybe even me) will generalize it to make it more useful.
