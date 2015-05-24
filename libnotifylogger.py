@@ -3,11 +3,10 @@
 import glib
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
+from time import strftime
 
 def notifications(bus, message, logfile="/var/log/libnotify.log"):
-    logfile = open(logfile, "a")
     notification = list(message.get_args_list())
-    output = ""
     if len(notification) < 5:
         # I don't actually know what the fields are, since I'm just hacking
         # at someone else's script here... I should check that out sometime.
@@ -15,10 +14,12 @@ def notifications(bus, message, logfile="/var/log/libnotify.log"):
         #output = "Short Notification: "+str(output)
         pass
     else:
-        output = "program: "+notification[0]+" subject: "+notification[3]+" body: "+notification[4]
-    output += "\n"
-    logfile.write(str(output))
-    logfile.close()
+        logfile = open(logfile, "a")
+        output = strftime("%Y-%m-%d_%H:%M:%S")
+        output += " program: "+notification[0]+" subject: "+notification[3]+" body: "+notification[4]
+        output += "\n"
+        logfile.write(output)
+        logfile.close()
 
 # main...
 import sys
